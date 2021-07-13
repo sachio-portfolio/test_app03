@@ -1,0 +1,29 @@
+
+
+<p>
+  <strong>Name:</strong>
+  <%= @divesite.name %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @divesite.address %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @divesite.phone %>
+</p>
+
+<p>
+  <strong>Service:</strong>
+  <%= @divesite.service %>
+</p>
+
+<p>
+  <strong>Discription:</strong>
+  <%= @divesite.discription %>
+</p>
+
+<%= link_to 'Edit', edit_divesite_path(@divesite) %> |
+<%= link_to 'Back', divesites_path %>

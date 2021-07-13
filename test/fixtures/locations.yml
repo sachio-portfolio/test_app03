@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  area: 1
+  zone: 1
+
+two:
+  area: 1
+  zone: 1
