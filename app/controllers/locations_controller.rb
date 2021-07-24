@@ -25,6 +25,8 @@ class LocationsController < ApplicationController
 
     respond_to do |format|
       if @location.save
+        @divesite = Divesite.find(params[:location][:divesite_ids])
+        @divesite.update(location_id: @location.id)
         format.html { redirect_to @location, notice: "Location was successfully created." }
         format.json { render :show, status: :created, location: @location }
       else
@@ -38,6 +40,8 @@ class LocationsController < ApplicationController
   def update
     respond_to do |format|
       if @location.update(location_params)
+        @divesite = Divesite.find(params[:location][:divesite_ids])
+        @divesite.update(location_id: @location.id)
         format.html { redirect_to @location, notice: "Location was successfully updated." }
         format.json { render :show, status: :ok, location: @location }
       else
@@ -64,6 +68,6 @@ class LocationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def location_params
-      params.require(:location).permit(:area, :zone)
+      params.require(:location).permit(:area, :zone, { divesite_ids: [] })
     end
 end

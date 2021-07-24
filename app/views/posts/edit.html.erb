@@ -1,0 +1,99 @@
+<h1>Editing Post</h1>
+<div class="">
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>
+<div id="post_form">
+  <%= form_with model: @post, local: true do |form| %>
+
+
+    <div class="field">
+      <%= form.label :divesite %>
+      <%= "#{@post.divesite.location.area}-#{@post.divesite.location.zone}-#{@post.divesite.name}" %>
+    </div>
+
+    <div class="">
+      <p>※ダイブサイトを変更したい場合は、以下で地域からお選び直しください</p>
+      <div class="selece_area">
+        <div id="parent">
+          <% @areas.each.with_index(1) do |area, index| %>
+            <%= link_to area, select_zone_posts_path(area: area), class: "area#{index}", remote: true %>
+          <% end %>
+        </div>
+      </div>
+      <div id="child">
+        <%= render 'select_zone' %>
+      </div>
+      <div class="hidden">
+        <div id="grandchildren">
+          <%= render 'select_divesite' %>
+        </div>
+      </div>
+      <div class="hidden" id="post_form">
+        <%= render 'edit_divesite', post: @post %>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= form.hidden_field :divesite_id, value: @post.divesite_id %>
+    </div>
+
+    <div class="field">
+      <%= form.label :divepoint %>
+      <%= form.text_field :divepoint %>
+    </div>
+
+    <div class="field">
+      <%= form.label :status %>
+      <%= form.radio_button :status, :open, checked: true %>
+      <%= form.label :status, "OPEN", class: "status_label" %>
+      <%= form.radio_button :status, :close %>
+      <%= form.label :status, "CLOSE", class: "status_label" %>
+      <%= form.radio_button :status, :caution %>
+      <%= form.label :status, "潜水注意", class: "status_label" %>
+    </div>
+
+    <div class="field">
+      <%= form.label :temp %>
+      <%= form.number_field :temp %><span> ℃</span>
+    </div>
+
+    <div class="field">
+      <%= form.label :visibility %>
+      <%= form.number_field :visibility, value: "10" %><span> m</span>
+    </div>
+
+    <div class="field">
+      <%= form.label :content %>
+      <%= form.text_area :content %>
+    </div>
+
+    <div class="field">
+      <%= form.label :image %>
+      <%= form.text_area :image %>
+    </div>
+
+    <div class="field">
+      <%= form.label :video %>
+      <%= form.text_area :video %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  <% end %>
+</div>
+
+
+
+<%= link_to 'Show', @post %> |
+<%= link_to 'Back', posts_path %>

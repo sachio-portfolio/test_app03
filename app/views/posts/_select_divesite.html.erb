@@ -1,0 +1,13 @@
+
+<div class="">
+  <% if @divesites.present? %>
+    <p class="">ダイビングサイトを選んでください</p>
+    <div id="grandchildren">
+      <% @divesites.each.with_index(1) do |divesite, index| %>
+        <%= link_to divesite, set_divesite_posts_path(divesite: divesite), class: "divesite#{index}", remote: true %>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="select_divesite">上記のボタンでエリアを選ぶと、そのエリアにあるダイビングサイトが下記に表示されます</p>
+  <% end %>
+</div>

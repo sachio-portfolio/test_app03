@@ -30,7 +30,7 @@
   top:0;
   width:2px;/*線の太さ*/
   height:0;/*はじめは高さを0に*/
-  background: #00bfff;
+  background: #fff;
 }
 
 /*タイムラインの見出し横の丸の位置と形状*/
@@ -41,7 +41,7 @@
   left:0;
   width:10px;
   height: 10px;
-  background:#191970;
+  background:#fff;
   border-radius: 50%;
 }
 
@@ -91,5 +91,11 @@ section:first-child{
 }
 
 section:nth-child(2n){
-  background:#f3f3f3;
+  /* background:#f3f3f3; */
+}
+
+.background {
+  background-image: url("/background_image.jpg");
+  background-size: cover;
+  /* object-fit: cover; */
 }

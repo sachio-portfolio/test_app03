@@ -1,0 +1,7 @@
+<div class="">
+  <% if @divesite.present? %>
+    <p><%= "#{Date.current}の#{@divesite.name}の海況を投稿しよう!" %></p>
+  <% else %>
+    <p class="set_divesite">上記のボタンでダイビングサイトを選んでください</p>
+  <% end %>
+</div>

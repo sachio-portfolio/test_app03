@@ -5,6 +5,8 @@
 <table>
   <thead>
     <tr>
+      <th>Area</th>
+      <th>Zone</th>
       <th>Name</th>
       <th>Address</th>
       <th>Phone</th>
@@ -17,6 +19,8 @@
   <tbody>
     <% @divesites.each do |divesite| %>
       <tr>
+        <td><%= divesite.location.area %></td>
+        <td><%= divesite.location.zone %></td>
         <td><%= divesite.name %></td>
         <td><%= divesite.address %></td>
         <td><%= divesite.phone %></td>

@@ -1,0 +1,37 @@
+<h1>New Post</h1>
+<div class="">
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>
+
+<p>地域を選んでください</p>
+<div class="selece_area">
+  <div id="parent">
+    <% @areas.each.with_index(1) do |area, index| %>
+      <%= link_to area, select_zone_posts_path(area: area), class: "area#{index}", remote: true %>
+    <% end %>
+  </div>
+</div>
+<div id="child">
+  <%= render 'select_zone' %>
+</div>
+<div class="hidden" id="grandchildren">
+  <%= render 'select_divesite' %>
+</div>
+
+<br>
+<div class="hidden" id="post_form">
+  <%= render 'set_divesite', post: @post %>
+</div>
+
+
+<%= link_to 'Back', posts_path %>

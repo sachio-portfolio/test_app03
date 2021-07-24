@@ -11,14 +11,30 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :area %>
-    <%= form.number_field :area %>
+
+  <div class="form-group">
+
+    <div class="form-check form-check-inline">
+      <%= form.label :area %>
+      <%= form.collection_radio_buttons :area, Area.options_for_area, :first, :last do |b| %>
+        <%= b.radio_button(class: 'form-check-input') + b.text %>
+      <% end %>
+    </div>
+    <div class="form-check form-check-inline">
+      <%= form.label :zone %><br>
+      <%= form.collection_radio_buttons :zone, Zone.options_for_zone, :first, :last do |b| %>
+        <%= b.radio_button + b.label(class: 'form-check-input') %>
+      <% end %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :zone %>
-    <%= form.number_field :zone %>
+  <div class="form-check form-check-inline">
+    <%= form.label :divesite %><br>
+    <%= form.collection_radio_buttons(:divesite_ids, Divesite.all, :id, :name) do |ds| %>
+      <div class="form-check-label">
+        <%= ds.label { ds.radio_button + ds.text } %>
+      </div>
+    <% end %>
   </div>
 
   <div class="actions">

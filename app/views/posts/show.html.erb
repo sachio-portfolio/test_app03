@@ -1,0 +1,44 @@
+<h2>海況投稿詳細</h2>
+
+<p>
+  <strong>Divesite:</strong>
+  <%= @post.divesite.name %>
+</p>
+
+<p>
+  <strong>Divepoint:</strong>
+  <%= @post.divepoint %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @post.status %>
+</p>
+
+<p>
+  <strong>Temp:</strong>
+  <%= @post.temp %>
+</p>
+
+<p>
+  <strong>Visibility:</strong>
+  <%= @post.visibility %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @post.content %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @post.image %>
+</p>
+
+<p>
+  <strong>Video:</strong>
+  <%= @post.video %>
+</p>
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>

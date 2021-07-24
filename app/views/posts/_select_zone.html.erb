@@ -1,0 +1,15 @@
+
+<div class="">
+  <% if @zones.present? %>
+    <p class="">ダイビングエリアを選んでください</p>
+    <div class="select_zone">
+      <div id="child">
+        <% @zones.each.with_index(1) do |zone, index| %>
+          <%= link_to zone, select_divesite_posts_path(zone: zone), class: "zone#{index}", remote: true %>
+        <% end %>
+      </div>
+    </div>
+  <% else %>
+    <p>上記のボタンで地域を選ぶと、下に関連のエリアが表示されます</p>
+  <% end %>
+</div>
