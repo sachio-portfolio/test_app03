@@ -1,6 +1,6 @@
 require 'csv'
 
-csv_data = CSV.read('db/Divesite03.csv', headers: true)
+csv_data = CSV.read('db/Divesite04.csv', headers: true)
 csv_data.each do |data|
   Divesite.create!(data.to_hash)
 end

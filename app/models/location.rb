@@ -1,5 +1,5 @@
 class Location < ApplicationRecord
-  has_many :divesites
+  has_many :divesites, dependent: :destroy
 
   require './app/commonclass/area'
   enum area: Area.options_for_enum

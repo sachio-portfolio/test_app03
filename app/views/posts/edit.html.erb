@@ -17,34 +17,108 @@
 
 
     <div class="field">
-      <%= form.label :divesite %>
+      <h4>現在のDivesite</h4>
       <%= "#{@post.divesite.location.area}-#{@post.divesite.location.zone}-#{@post.divesite.name}" %>
     </div>
 
     <div class="">
-      <p>※ダイブサイトを変更したい場合は、以下で地域からお選び直しください</p>
-      <div class="selece_area">
+      <p>※ダイブサイトを変更したい場合は、以下で地域から選び直してください</p>
+      <div class="select_divesite">
         <div id="parent">
-          <% @areas.each.with_index(1) do |area, index| %>
-            <%= link_to area, select_zone_posts_path(area: area), class: "area#{index}", remote: true %>
+          <% areas = @locations.pluck(:area).uniq %>
+          <% areas.each.with_index(1) do |area, index| %>
+            <%= button_tag area, type: "button", id: "area#{index}" %>
           <% end %>
         </div>
-      </div>
-      <div id="child">
-        <%= render 'select_zone' %>
-      </div>
-      <div class="hidden">
+
+        <div id="children">
+          <div class="child hidden area1">
+            <% kanto_zones = @locations.where(area: '関東').pluck(:zone).uniq %>
+            <% kanto_zones.each.with_index(1) do |kanto_zone, index| %>
+              <%= button_tag kanto_zone, type: "button", id: "kanto_zone#{index}" %>
+            <% end %>
+          </div>
+          <div class="child hidden area2">
+            <% hokkaido_zones = @locations.where(area: '北海道').pluck(:zone).uniq %>
+            <% hokkaido_zones.each.with_index(1) do |hokkaido_zone, index| %>
+              <%= button_tag hokkaido_zone, type: "button", id: "hokkaido_zone#{index}" %>
+            <% end %>
+          </div>
+          <div class="child hidden area3">
+            <% tohoku_zones = @locations.where(area: '東北').pluck(:zone).uniq %>
+            <% tohoku_zones.each.with_index(1) do |tohoku_zone, index| %>
+              <%= button_tag tohoku_zone, type: "button", id: "tohoku_zone#{index}" %>
+            <% end %>
+          </div>
+          <div class="child hidden area4">
+            <% hokuriku_zones = @locations.where(area: '北陸').pluck(:zone).uniq %>
+            <% hokuriku_zones.each.with_index(1) do |hokuriku_zone, index| %>
+              <%= button_tag hokuriku_zone, type: "button", id: "hokuriku_zone#{index}" %>
+            <% end %>
+          </div>
+          <div class="child hidden area5">
+            <% chubu_zones = @locations.where(area: '中部・東海').pluck(:zone).uniq %>
+            <% chubu_zones.each.with_index(1) do |chubu_zone, index| %>
+              <%= button_tag chubu_zone, type: "button", id: "chubu_zone#{index}" %>
+            <% end %>
+          </div>
+          <div class="child hidden area6">
+            <% kansai_zones = @locations.where(area: '関西').pluck(:zone).uniq %>
+            <% kansai_zones.each.with_index(1) do |kansai_zone, index| %>
+              <%= button_tag kansai_zone, type: "button", id: "kansai_zone#{index}" %>
+            <% end %>
+          </div>
+          <div class="child hidden area7">
+            <% sanin_zones = @locations.where(area: '山陰').pluck(:zone).uniq %>
+            <% sanin_zones.each.with_index(1) do |sanin_zone, index| %>
+              <%= button_tag sanin_zone, type: "button", id: "sanin_zone#{index}" %>
+            <% end %>
+          </div>
+          <div class="child hidden area8">
+            <% shikoku_zones = @locations.where(area: '四国').pluck(:zone).uniq %>
+            <% shikoku_zones.each.with_index(1) do |shikoku_zone, index| %>
+              <%= button_tag shikoku_zone, type: "button", id: "shikoku_zone#{index}" %>
+            <% end %>
+          </div>
+          <div class="child hidden area9">
+            <% kyushu_zones = @locations.where(area: '九州').pluck(:zone).uniq %>
+            <% kyushu_zones.each.with_index(1) do |kyushu_zone, index| %>
+              <%= button_tag kyushu_zone, type: "button", id: "kyushu_zone#{index}" %>
+            <% end %>
+          </div>
+          <div class="child hidden area10">
+            <% okinawa_zones = @locations.where(area: '沖縄').pluck(:zone).uniq %>
+            <% okinawa_zones.each.with_index(1) do |okinawa_zone, index| %>
+              <%= button_tag okinawa_zone, type: "button", id: "okinawa_zone#{index}" %>
+            <% end %>
+          </div>
+        </div>
+
         <div id="grandchildren">
-          <%= render 'select_divesite' %>
+          <div class="grandchild hidden kanto_zone1">
+            <% nishiizu = @locations.where(zone: '西伊豆') %>
+            <% nishiizu.each.with_index(1) do |nishiizu_ds, index| %>
+              <% nishiizu_ds_id = nishiizu_ds.divesites.pluck(:id)[0] %>
+              <% nishiizu_ds = nishiizu_ds.divesites.pluck(:name)[0] %>
+              <%= button_tag nishiizu_ds, type: "button", id: "nishiizu_ds#{index}", name: "#{nishiizu_ds_id}" %>
+            <% end %>
+          </div>
+          <div class="grandchild hidden kanto_zone2">
+            <% higashiizu = @locations.where(zone: '東伊豆') %>
+            <% higashiizu.each.with_index(1) do |higashiizu_ds, index| %>
+              <% higashiizu_ds_id = higashiizu_ds.divesites.pluck(:id)[0] %>
+              <% higashiizu_ds = higashiizu_ds.divesites.pluck(:name)[0] %>
+              <%= button_tag higashiizu_ds, type: "button", id: "higashiizu_ds#{index}", name: "#{higashiizu_ds_id}" %>
+            <% end %>
+          </div>
         </div>
       </div>
-      <div class="hidden" id="post_form">
-        <%= render 'edit_divesite', post: @post %>
-      </div>
     </div>
-
+    <br>
+    <span class="h4"><%= "#{@post.divesite.name}" %></span>
+    <span class="h5">の海況投稿</span>
     <div class="field">
-      <%= form.hidden_field :divesite_id, value: @post.divesite_id %>
+      <%= form.hidden_field :divesite_id, value: "" %>
     </div>
 
     <div class="field">
@@ -87,6 +161,8 @@
       <%= form.text_area :video %>
     </div>
 
+
+
     <div class="actions">
       <%= form.submit %>
     </div>
@@ -95,5 +171,12 @@
 
 
 
+
 <%= link_to 'Show', @post %> |
 <%= link_to 'Back', posts_path %>
+
+<!-- <script type="text/javascript">
+  function OnButtonClick(selector){
+      $(selector).removeClass('hidden');
+    }
+</script> -->
