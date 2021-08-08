@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'maps/index'
   resources :posts do
     collection do
       # get 'select_zone'
@@ -8,7 +9,8 @@ Rails.application.routes.draw do
     end
   end
   resources :locations
-  root to: 'posts#index'
+  root to: 'maps#index'
   resources :divesites
   devise_for :users
+  resources :maps, only: [:index]
 end

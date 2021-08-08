@@ -3,7 +3,8 @@ class LocationsController < ApplicationController
 
   # GET /locations or /locations.json
   def index
-    @locations = Location.includes(:divesites).order(id: :asc)
+    @locations = Location.includes(:divesites).where(area: '関東')
+    @locations = @locations.map {| location | { 'location':location, 'divesites':location.divesites.pluck(:name)}}
   end
 
   # GET /locations/1 or /locations/1.json

@@ -14,12 +14,12 @@
     <tbody>
       <% @locations.each do |location| %>
         <tr>
-          <td><%= location.area %></td>
-          <td><%= location.zone %></td>
-          <td><%= location.divesites %></td>
+          <td><%= location[:location][:area] %></td>
+          <td><%= location[:location][:zone] %></td>
+          <td><%= location[:divesites][0] %></td>
           <td><%= link_to 'Show', location %></td>
-          <td><%= link_to 'Edit', edit_location_path(location) %></td>
-          <td><%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Edit', edit_location_path(location[:location]) %></td>
+          <td><%= link_to 'Destroy', location[:location], method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     </tbody>

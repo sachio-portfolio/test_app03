@@ -3,7 +3,7 @@ class DivesitesController < ApplicationController
 
   # GET /divesites or /divesites.json
   def index
-    @divesites = Divesite.all
+    @divesites = Divesite.all.order(created_at: :ASC).limit(12)
   end
 
   # GET /divesites/1 or /divesites/1.json
